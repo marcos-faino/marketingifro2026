@@ -1,0 +1,33 @@
+{% load static %}
+
+  <section id="equipe" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Nossa Equipe</h2>
+        <p class="text-muted">Os profissionais por trás da comunicação do IFRO.</p>
+      </div>
+      <div class="row g-4">
+      {% for col in colaboradores %}
+        <div class="col-sm-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <img src="{{ col.foto.url }}" class="card-img-top rounded-circle mx-auto mt-4" style="width:120px;height:120px;object-fit:cover" alt="{{ col.nome }}" />
+            <div class="card-body">
+              <h5 class="card-title mb-1">{{ col.nome }}</h5>
+              <span class="badge bg-warning text-dark mb-2">{{ col.cargo }}</span>
+              <p class="card-text text-muted small">{{ col.bio|truncatewords:10 }}</p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <img src="{% static 'imgs/ninguem.jpg' %}" class="card-img-top rounded-circle mx-auto mt-4" style="width:120px;height:120px;object-fit:cover" alt="João da Silva" />
+            <div class="card-body">
+              <h5 class="card-title mb-1">Ninguém por aqui!</h5>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </section>

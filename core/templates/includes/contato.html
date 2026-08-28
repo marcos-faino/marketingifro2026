@@ -1,0 +1,34 @@
+{% load static %}
+
+<section id="contato" class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-5 mb-4 mb-md-0">
+          <h2 class="fw-bold">Fale Conosco</h2>
+          <p class="text-white-50">Envie sua pauta, divulgue seu evento ou peça nossos serviços.</p>
+          <ul class="list-unstyled mt-3">
+            <li class="mb-2"><i class="bi bi-envelope me-2 text-warning"></i>comunicacao@ifro.edu.br</li>
+            <li class="mb-2"><i class="bi bi-telephone me-2 text-warning"></i>(69) 2181-5000</li>
+            <li class="mb-2"><i class="bi bi-geo-alt me-2 text-warning"></i>Porto Velho - RO</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <form class="bg-white text-dark p-4 rounded-3 shadow">
+            <div class="mb-3">
+              <label class="form-label" for="nome">Nome</label>
+              <input type="text" class="form-control" id="nome" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="email">E-mail</label>
+              <input type="email" class="form-control" id="email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="msg">Mensagem</label>
+              <textarea class="form-control" id="msg" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning w-100 fw-semibold">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
