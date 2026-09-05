@@ -1,0 +1,1 @@
+web: gunicorn marketingifro.wsgi:core --log-file -

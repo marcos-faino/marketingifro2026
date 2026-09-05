@@ -1,7 +1,21 @@
 from django.contrib import admin
 from django.template.defaultfilters import truncatewords
 
-from .models import Servico, Colaborador
+from .models import Servico, Colaborador, Municipio, Campus
+
+
+@admin.register(Municipio)
+class MunicipioAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+
+@admin.register(Campus)
+class CampusAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'get_endereco', 'municipio')
+
+    def get_endereco(self, obj):
+        return f'Rua:{obj.rua}, {obj.numero}. Bairro {obj.bairro}'
+
+    get_endereco.short_description = 'endereço'
 
 
 @admin.register(Servico)

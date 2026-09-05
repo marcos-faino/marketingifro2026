@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'marketingifro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+"""
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': env('NAME'),
@@ -87,6 +87,12 @@ DATABASES = {
         'HOST': env('HOST'),
         'PORT': env('PORT'),
     }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'mkifro.sqlite3',
+    },
 }
 
 

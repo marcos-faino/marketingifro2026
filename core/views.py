@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, FormView
 
-from core.models import Servico, Colaborador
+from core.models import Servico, Colaborador, Municipio
 from core.forms import ContatoForm
 
 
@@ -16,6 +16,7 @@ class HomeView(FormView):
         context = super().get_context_data(**kwargs)
         context['servicos'] = Servico.objects.order_by("?").all()
         context['colaboradores'] = Colaborador.objects.order_by("?").filter(ativo=True)
+        context['municipios'] = Municipio.objects.order_by("?").filter(ativo=True)
         return context
 
     def form_valid(self, form):

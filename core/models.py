@@ -45,3 +45,29 @@ class Colaborador(Base):
 
     def __str__(self):
         return self.nome
+
+
+class Campus(Base):
+    nome = models.CharField(max_length=200)
+    rua = models.CharField(max_length=100)
+    numero = models.IntegerField()
+    bairro = models.CharField(max_length=100)
+    municipio = models.ForeignKey('Municipio', on_delete=models.CASCADE,
+                                  related_name='campus')
+
+    class Meta:
+        verbose_name = 'Campus'
+        verbose_name_plural = 'Campi'
+
+    def __str__(self):
+        return self.nome
+
+class Municipio(Base):
+    nome = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name = 'Município'
+        verbose_name_plural = 'Municípios'
+
+    def __str__(self):
+        return self.nome
