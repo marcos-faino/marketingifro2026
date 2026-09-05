@@ -15,4 +15,4 @@ class ColaboradorAdmin(admin.ModelAdmin):
     def get_bio(self, obj):
         return truncatewords(obj.bio, 12)
 
-    get_bio.short_description = 'bio'
+    get_bio.short_description = 'biografia'

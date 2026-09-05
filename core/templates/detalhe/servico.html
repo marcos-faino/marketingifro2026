@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+   - Detalhe do Serviço {{ servico.nome }}
+{% endblock %}
+
+{% block conteudo %}
+    <section class="py-5">
+    <div class="container w-50">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">{{ servico.nome }}</h2>
+        <h1 class="card-title"><i class="bi {{ servico.icone }} text-warning me-2"></i></h1>
+      </div>
+      <div class="row g-4">
+        <div>
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="{{ servico.imagem.url }}" class="img-fluid w-100 mx-auto"
+                 alt="{{ servico.nome }}" />
+            <div class="card-body">
+              <p class="card-text text-muted">{{ servico.descricao }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -13,18 +13,24 @@
           </ul>
         </div>
         <div class="col-md-6">
-          <form class="bg-white text-dark p-4 rounded-3 shadow">
+          {% if messages %}
+            {% for m in messages %}
+              <p>{{ m }}</p>
+            {% endfor %}
+          {% endif %}
+          <form action="{% url 'home' %}" method="POST" class="bg-white text-dark p-4 rounded-3 shadow">
+            {% csrf_token %}
             <div class="mb-3">
               <label class="form-label" for="nome">Nome</label>
-              <input type="text" class="form-control" id="nome" required />
+              <input type="text" class="form-control" id="nome" name="nome" required />
             </div>
             <div class="mb-3">
               <label class="form-label" for="email">E-mail</label>
-              <input type="email" class="form-control" id="email" required />
+              <input type="email" class="form-control" id="email" name="email" required />
             </div>
             <div class="mb-3">
               <label class="form-label" for="msg">Mensagem</label>
-              <textarea class="form-control" id="msg" rows="3" required></textarea>
+              <textarea class="form-control" id="msg" name="mensagem" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-warning w-100 fw-semibold">Enviar</button>
           </form>

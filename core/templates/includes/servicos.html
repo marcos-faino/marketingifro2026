@@ -8,6 +8,7 @@
       <div class="row g-4">
       {% for s in servicos %}
         <div class="col-md-6 col-lg-4">
+        <a href="{% url 'servico_detalhe' s.id %}" class="text-decoration-none">
           <div class="card h-100 border-0 shadow-sm">
             <img src="{{ s.imagem.thumb.url }}" class="card-img-top" alt="{{ s.nome }}" />
             <div class="card-body">
@@ -15,6 +16,7 @@
               <p class="card-text text-muted">{{ s.descricao|truncatewords:10 }}</p>
             </div>
           </div>
+       </a>
         </div>
       {% endfor %}
       </div>
