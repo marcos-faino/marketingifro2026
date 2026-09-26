@@ -1,0 +1,17 @@
+<div class="container">
+<div class="col-sm-12 text-center">
+    <div class="card h-100 border-0 shadow-sm fs-5">
+    <span>
+        {% if page.has_previous %}
+          <a href="?page={{ page.previous_page_number }}"><i class="bi bi-arrow-left-square"></i></a>
+        {% endif %}
+        <span>Página {{ page.number }} de {{ page.paginator.num_pages }}</span>
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">
+              <i class="bi bi-arrow-right-square"></i>
+            </a>
+        {% endif %}
+    </span>
+    </div>
+</div>
+</div>
