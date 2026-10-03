@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Comentário {{ noticia.titulo }}{% endblock %}
+{% block conteudo %}
+<section class="py-5">
+    <div class="container w-50">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Comentário de {{ noticia.titulo }}</h2>
+      </div>
+      <div class="row g-4">
+        <div>
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <p class="card-text text-muted">{{ noticia.titulo }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4">
+            <form method="POST">
+            {% csrf_token %}
+              <label class="form-label" for="titulo">Titulo</label>
+              <input type="text" class="form-control" id="titulo"
+                     name="titulo" value=""/>
+              <label class="form-label" for="texto">Comentário</label>
+              <textarea class="form-control" rows=10 id="texto"
+                     name="texto"></textarea>
+            <input type="submit" class="btn btn-primary" value="Enviar Comentário">
+            </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}

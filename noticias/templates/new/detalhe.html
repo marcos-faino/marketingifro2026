@@ -18,8 +18,13 @@
           </div>
         </div>
       </div>
-        <form action="{% url 'noticias:enviarnew' %}" method="POST">
-         {% csrf_token %}
+      <div class="row g-4">
+        <div class="col-6">
+            <a href="{% url 'noticias:coment' noticia.id %}" class="btn btn-success">Comentar</a>
+        </div>
+        <div class="col-6">
+            <form action="{% url 'noticias:enviarnew' %}" method="POST">
+            {% csrf_token %}
             <input type="hidden" class="form-control" id="usuario"
                      name="nome" value="{{ user.get_full_name }}"/>
               <input type="hidden" class="form-control" id="urlnoticia"
@@ -27,8 +32,9 @@
               <input type="hidden" class="form-control" id="resnoticia"
                      name="resumo" value="{{ noticia.texto|truncatewords:15 }}"/>
             <input type="submit" class="btn btn-primary" value="Enviar Notícia">
-            </input>
-        </form>
+            </form>
+        </div>
+      </div>
     </div>
   </section>
 {% endblock %}

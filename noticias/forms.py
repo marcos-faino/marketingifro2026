@@ -1,6 +1,7 @@
 from django.core.mail.message import EmailMessage
-
 from django import forms
+
+from noticias.models import Comentario
 
 
 class NoticiaForm(forms.Form):
@@ -24,3 +25,11 @@ class NoticiaForm(forms.Form):
             headers = {'Reply-To': 'marcosfaino@gmail.com'},
         )
         mail.send()
+
+
+class ComentarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Comentario
+        exclude = ('id','autor','criado_em','noticia')
+

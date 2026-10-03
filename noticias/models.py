@@ -28,11 +28,25 @@ class Noticia(models.Model):
                                                  'height': 360,
                                                  'crop': True}})
 
-
     class Meta:
         verbose_name = 'Notícia'
         verbose_name_plural = 'Notícias'
         ordering = ['status', '-criado_em']
+
+    def __str__(self):
+        return self.titulo
+
+class Comentario(models.Model):
+    noticia = models.ForeignKey('Noticia', on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100)
+    texto = models.TextField()
+    autor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name='Comentário'
+        verbose_name_plural='Comentários'
+        ordering = ['criado_em']
 
     def __str__(self):
         return self.titulo
