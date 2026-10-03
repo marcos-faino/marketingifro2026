@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ noticia.titulo }}{% endblock %}
+{% block conteudo %}
+<section class="py-5">
+    <div class="container w-50">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">{{ noticia.titulo }}</h2>
+      </div>
+      <div class="row g-4">
+        <div>
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="{{ noticia.imagem_principal.url }}" class="img-fluid w-100 mx-auto"
+                 alt="{{ noticia.titulo|truncatewords:10 }}" />
+            <div class="card-body">
+              <p class="card-text text-muted">{{ noticia.texto }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <form action="{% url 'noticias:enviarnew' %}" method="POST">
+         {% csrf_token %}
+            <input type="hidden" class="form-control" id="usuario"
+                     name="nome" value="{{ user.get_full_name }}"/>
+              <input type="hidden" class="form-control" id="urlnoticia"
+                     name="titulo" value="{{ request.get_full_path }}"/>
+              <input type="hidden" class="form-control" id="resnoticia"
+                     name="resumo" value="{{ noticia.texto|truncatewords:15 }}"/>
+            <input type="submit" class="btn btn-primary" value="Enviar Notícia">
+            </input>
+        </form>
+    </div>
+  </section>
+{% endblock %}

@@ -14,7 +14,7 @@
       {% include 'includes/paginacao.html' with page=page_obj%}
       {% for n in noticias %}
         <div class="col-sm-12">
-        <a href="#" class="text-decoration-none">
+        <a href="{% url 'noticias:detalhe_noticia' n.id %}" class="text-decoration-none">
           <div class="card h-100 border-0 shadow-sm">
             <img src="{{ n.imagem_principal.thumb.url }}" class="card-img-top" alt="{{ n.titulo }}" />
             <div class="card-body">
