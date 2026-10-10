@@ -30,7 +30,7 @@
             <input type="hidden" class="form-control" id="usuario"
                      name="nome" value="{{ user.get_full_name }}"/>
               <input type="hidden" class="form-control" id="urlnoticia"
-                     name="titulo" value="{{ request.get_full_path }}"/>
+                     name="titulo" value="{{ request.build_absolute_uri }}"/>
               <input type="hidden" class="form-control" id="resnoticia"
                      name="resumo" value="{{ noticia.texto|truncatewords:15 }}"/>
             <input type="submit" class="btn btn-primary" value="Enviar Notícia">
