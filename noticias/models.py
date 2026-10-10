@@ -37,7 +37,8 @@ class Noticia(models.Model):
         return self.titulo
 
 class Comentario(models.Model):
-    noticia = models.ForeignKey('Noticia', on_delete=models.CASCADE)
+    noticia = models.ForeignKey('Noticia', on_delete=models.CASCADE,
+                                related_name='comentarios')
     titulo = models.CharField(max_length=100)
     texto = models.TextField()
     autor = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

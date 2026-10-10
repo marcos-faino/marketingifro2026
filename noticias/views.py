@@ -1,6 +1,7 @@
 from email.message import EmailMessage
 
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, FormView
@@ -21,6 +22,13 @@ class DetailNoticia(DetailView):
     model = Noticia
     context_object_name = 'noticia'
 
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        comentarios = self.get_object().comentarios.order_by('-criado_em')
+        contexto['coments'] = comentarios
+        return contexto
+
+
 
 class EnviarNoticia(FormView):
     form_class = NoticiaForm
@@ -37,24 +45,26 @@ class EnviarNoticia(FormView):
         return super().form_invalid(form)
 
 
-class Comentario(FormView):
+class Comentario(LoginRequiredMixin, FormView):
     model = Comentario
     form_class = ComentarioForm
     template_name = 'comentario/novo.html'
     context_object_name = 'comentario'
-    noticia = None
+
+
+    def _getNoticia(self):
+        return Noticia.objects.get(id=self.kwargs['idnoticia'])
 
     def form_valid(self, form):
         coment = form.save(commit=False)
         coment.autor = self.request.user
-        self.noticia = Noticia.objects.get(id=self.kwargs['idnoticia'])
-        coment.noticia = self.noticia
+        coment.noticia = self._getNoticia()
         coment.save()
-        return redirect('noticias:detalhe_noticia', idnoticia)
+        return redirect('noticias:detalhe_noticia', pk=self.kwargs['idnoticia'])
 
     def get_context_data(self, **kwargs):
         cont = super().get_context_data(**kwargs)
-        cont['noticia'] = self.noticia
+        cont['noticia'] = self._getNoticia()
         return cont
 
     def form_invalid(self, form):

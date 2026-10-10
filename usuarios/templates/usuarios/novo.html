@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Novo Usuário {% endblock %}
+{% block conteudo %}
+    <section id="contato" class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-5 mb-4 mb-md-0">
+          <h2 class="fw-bold">Seja Bem-vindo!</h2>
+          <p class="text-white-50">Cadastre-se para aproveitar ainda mais!</p>
+          <ul class="list-unstyled mt-3">
+            <li class="mb-2"><i class="bi bi-envelope me-2 text-warning"></i>comunicacao@ifro.edu.br</li>
+            <li class="mb-2"><i class="bi bi-telephone me-2 text-warning"></i>(69) 2181-5000</li>
+            <li class="mb-2"><i class="bi bi-geo-alt me-2 text-warning"></i>Porto Velho - RO</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          {% if messages %}
+            {% for m in messages %}
+              <p>{{ m }}</p>
+            {% endfor %}
+          {% endif %}
+          <form method="POST" class="bg-white text-dark p-4 rounded-3 shadow">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label" for="first_name">Primeiro Nome</label>
+              <input type="text" class="form-control" id="first_name" name="first_name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="last_name">Sobrenome</label>
+              <input type="text" class="form-control" id="last_name" name="last_name" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="username">Usuário</label>
+              <input type="text" class="form-control" id="username" name="username" required />
+                <div class="text-small">{{ username.help_text }}</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="email">E-mail</label>
+              <input type="text" class="form-control" id="email" name="email" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password1">Senha</label>
+              <input type="password" class="form-control" id="password1" name="password1" required />
+                <div class="text-small">{{ password1.help_text }}</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password2">Repita a Senha</label>
+              <input type="password" class="form-control" id="password2" name="password2" required />
+                <div class="text-small">{{ password2.help_text }}</div>
+            </div>
+            <button type="submit" class="btn btn-warning w-100 fw-semibold">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
